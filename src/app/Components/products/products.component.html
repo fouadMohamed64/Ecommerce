@@ -1,0 +1,27 @@
+
+<div class="row row-cols-1 row-cols-md-4 g-4 my-5">
+                <ng-container *ngFor="let prd of filteredProducts">
+                    <div class="col"> 
+                        <div class="card" [ngStyle]="{'background-color': prd.quintity == 1 ? 'danger' : prd.quintity==0 ? 'danger' : 'white'}">
+                            <img class="card-img-top" [src]='prd.imgURL' >
+                            <div class="card-body">
+                                <h5 class="card-title">{{prd.name | uppercase}}</h5>
+                                <p class="card-text">Price: {{prd.price | currency}}</p>
+
+                                <p class="card-text" [ngSwitch]="prd.quintity">
+                                    Quintity:
+                                    <span *ngSwitchCase="0" class="text-danger">Out Of Stock</span>
+                                    <span *ngSwitchCase="1" class="text-warning">Last Item</span>
+                                    <span *ngSwitchDefault>{{prd.quintity}}</span>
+                                </p>
+                                <input type="number" placeholder="Quintity" class="form-control" #inp>
+                                <button class="btn btn-success col-6" (click)="buy(inp.value , prd.price)">buy</button>
+                                <button class="btn btn-dark col-6" (click)="showDetails(prd.id)">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+    </div>
+
+    <!-- <h1 class="my-5">Total Order Price: {{totalOrderPrice}}</h1> -->
+    <!-- <h2>Today's Date: {{todayDate | date}}</h2> -->

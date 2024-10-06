@@ -1,0 +1,75 @@
+<form class="my-5 p-5 w-50 m-auto border border-success rounded" (ngSubmit)="addNewProduct()" #addProductForm="ngForm">
+  <h1 class="text-center">Add New Product</h1>
+    <div class="form-group mb-4">
+      <label>Name: </label>
+      <input [(ngModel)]="product.name" type="text" class="form-control" name="name" placeholder="Name" required pattern="^[a-zA-Z]{3,15}$" #nameInput="ngModel" />
+      @if(nameInput.touched){
+      <div class="my-3">
+        @if(nameInput.errors?.['required']){
+        <span class="text-danger alert alert-danger">Name is required</span>
+        } @if(nameInput.errors?.['pattern']){
+        <span class="text-danger alert alert-danger">
+          Name must be at least 3 letters
+        </span>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Price: </label>
+      <input [(ngModel)]="product.price"  type="number" class="form-control" name="price"  placeholder="Price" required #priceInput="ngModel" />
+    </div>
+
+    @if(priceInput.touched){
+    <div class="my-3">
+      @if(priceInput.errors?.['required']){
+      <span class="text-danger alert alert-danger">pice required</span>
+      }
+    </div>
+    }
+
+    <div class="form-group mb-4">
+      <label>Quantity: </label>
+      <input [(ngModel)]="product.quintity" type="number" class="form-control" name="quantity" placeholder="Quantity" required #quantityInput="ngModel" />
+    </div>
+
+    @if(quantityInput.touched){
+    <div class="my-3 ">
+      @if(quantityInput.errors?.['required']){
+      <span class="text-danger alert alert-danger">Quantity required</span>
+      }
+    </div>
+    }
+
+    <div class="form-group mb-4">
+        <label>Image: </label>
+        <input [(ngModel)]="product.imgURL" type="file"  class="form-control" name="img" required #imgInput="ngModel"/>
+    </div>
+
+    @if(imgInput.touched){
+        <div class="my-3">
+          @if(imgInput.errors?.['required']){
+          <span class="text-danger alert alert-danger">img required</span>
+          }
+        </div>
+    }
+
+    <div class="form-group mb-4">
+        <label>Categories: </label>
+        <select name="select" [(ngModel)]="product.catID" class="form-select" aria-label="Default select example" required #selectInput="ngModel" >
+            @for( cat of categoriesList; track $index){
+              <option [value]="cat.name">{{ cat.name }}</option>
+            }
+        </select>
+    </div>
+
+    @if(selectInput.touched){
+    <div class="my-3">
+      @if(selectInput.errors?.['required']){
+      <span class="text-danger alert alert-danger">select required</span>
+      }
+    </div>
+    }
+    <button type="submit" class="btn btn-success btn-lg btn-block" [disabled]="addProductForm.invalid">Save</button>
+</form>

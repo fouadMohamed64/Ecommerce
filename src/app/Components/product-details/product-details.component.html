@@ -1,0 +1,15 @@
+
+<div class="d-flex justify-content-around  my-5 p-5 ">
+    <img [src]="product?.imgURL" class="col-5 ">
+    <div class="col-5 border border-light p-2 ">
+        <h1>Title: {{product?.name}}</h1>
+        <p>Price: {{product?.price}}</p>
+        <p>Quintity: {{product?.quintity}}</p>
+        <p>Lorem ipsum dolor sit amet consectetur sed? vitae aliquam modi nostrum ex suscipit impedit. Deserunt voluptate alias, hic architecto quia asperiores repellat, tenetur at iure est fugiat nesciunt quidem id deleniti porro. Velit cumque aperiam incidunt animi facere veritatis numquam doloribus illum, cum sequi eligendi magni minus, vitae atque sit omnis eveniet, enim delectus!</p>
+        <div class="d-flex justify-content-evenly ">
+            <button (click)="prev()" [disabled]="productID == productsIDs[0]"  class="btn btn-success  ">Prev</button>
+            <button (click)="next()" [disabled]="productID == productsIDs[productsIDs.length -1]"  class="btn btn-info ">Next</button>
+        </div>
+    </div>
+</div>
+<button (click)="goBack()" class="btn btn-secondary mb-5" >Go Back</button>
